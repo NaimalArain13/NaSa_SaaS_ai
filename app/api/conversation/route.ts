@@ -117,35 +117,35 @@
 
 
 
-// // pages/api/conversation.ts
+// // // pages/api/conversation.ts
 
-import { NextApiRequest, NextApiResponse } from "next";
-import axios from "axios";
+// import { NextApiRequest, NextApiResponse } from "next";
+// import axios from "axios";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    if (req.method !== "POST") {
-        return res.status(405).json({ message: "Method not allowed" });
-    }
+// export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+//     if (req.method !== "POST") {
+//         return res.status(405).json({ message: "Method not allowed" });
+//     }
 
-    const { messages } = req.body;
+//     const { messages } = req.body;
 
-    try {
-        const response = await axios.post("/api/conversation", {
-            model: "gpt-4",
-            messages: messages,
-        }, {
-            headers: {
-                "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
-                "Content-Type": "application/json"
-            }
-        });
+//     try {
+//         const response = await axios.post("/api/conversation", {
+//             model: "gpt-4",
+//             messages: messages,
+//         }, {
+//             headers: {
+//                 "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
+//                 "Content-Type": "application/json"
+//             }
+//         });
 
-        res.status(200).json(response.data.choices[0].message);
-    } catch (error: any) {
-        res.status(500).json({ message: error.message });
-        res.status(429).json({ message: error.message });
-    }
-}
+//         res.status(200).json(response.data.choices[0].message);
+//     } catch (error: any) {
+//         res.status(500).json({ message: error.message });
+//         res.status(429).json({ message: error.message });
+//     }
+// }
 
 
 
